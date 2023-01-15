@@ -60,9 +60,7 @@ def turn_off(req):
 """
 @rh.request_handler('/light/status')
 def get_status(req):
-    state = 1 if light.is_on else 0
-    print(f"Status is {state}")
-    return state
+    return 1 if light.is_on else 0
 
 """
 "brightnesslvl_url": "http://192.168.1.206/light/brightness_value"
@@ -84,13 +82,13 @@ def set_brightness(req):
 async def serve_client(reader, writer):
     request_line = str(await reader.readline()) # TODO read all request lines
     
-    while await reader.readline() != b"\r\n": # Withot this writer.wait_closed doesn't work
+    while await reader.readline() != b"\r\n": # Without this writer.wait_closed doesn't work
         pass
     
     try:
         req = rp.parse_raw_request(request_line)
         print(f"Handling request {req} using {len(rh.request_handlers)} registerd handlers")
-        for handler in rh.request_handlers: # sort handlers by uri length descending, to prioritize more precise matchers
+        for handler in rh.request_handlers: # TODO sort handlers by uri length descending, to prioritize more precise matchers
             result = handler(req)
             if result is not None: # TODO extract into response mapper
                 # TOOD if result error is not none, respond with error
