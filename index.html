@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Pico W</title>
+    <style>
+        body {
+            padding: 20px;
+            margin: 0;
+        }
+
+        .mw {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .f {
+            width: 200px;
+        }
+
+        .f > input, select {
+            width: 100%;
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="mw">
+        <h1>Homebridge Accessory 0.1.0</h1>
+        <form class="f" action="/connect">
+            <!-- <div> -->
+                <p>Network name:</p>
+                <select> id="ssid">
+                    {{options}}
+                </select>
+            <!-- </div> -->
+            <!-- <div> -->
+                <p>Password:</p>
+                <input id="ssid">
+            <!-- </div> -->
+            <button>Connect</button>
+        </form>
+    </div>
+</body>
+
+</html>
